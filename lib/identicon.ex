@@ -7,13 +7,13 @@ defmodule Identicon do
     |> pic_color
   end
 
-  def pic_color(image) do
+  def pic_color(%Identicon.Image{hex: [r,g,b | _tail]} = image) do
     # first way
     # %Identicon.Image{hex: hex_list} = image
     # [r,g,b | _tail] = hex_list
     # second way, the short one
-    %Identicon.Image{hex: [r,g,b | _tail]} = image
-    [r,g,b]
+    # %Identicon.Image{hex: [r,g,b | _tail]} = image
+    %Identicon.Image{image | color: {r,g,b}}
   end
 
   @spec hash_input(any) :: %Identicon.Image{hex: [byte]}
